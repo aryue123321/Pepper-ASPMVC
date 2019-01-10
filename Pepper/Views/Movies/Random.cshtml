@@ -1,0 +1,23 @@
+﻿@model Pepper.ViewModel.RandomMovieViewModel
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>@Model.Movie.Name</h2>
+
+@if (Model.Customers.Count == 0)
+{
+    <p>No Customers!</p>
+}
+else
+{
+    <ul>
+    @foreach(var c in Model.Customers)
+    {
+        <p> @c.Name </p>
+    }
+    </ul>
+}
+
