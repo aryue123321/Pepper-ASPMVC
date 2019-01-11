@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Pepper.Models.Customer>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,12 +7,35 @@
 
 <h2>Customers</h2>
 
-<ul>
-@foreach(var c in Model)
-{
-    <li>
-        @Html.ActionLink(c.Name, "Details", new { Id = c.Id})
-    </li>
-}
-</ul>
+<p> @Html.ActionLink("New Customer", "New","Customers", null, new { @class = "btn btn-primary" })</p>
 
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsSubscribeToNewsltter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberShipType)
+        </th>
+
+    </tr>
+
+    @foreach (var customer in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(customer.Name, "Edit", new { id = customer.Id })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => customer.IsSubscribeToNewsltter)
+            </td>
+            <td>
+                @customer.MemberShipType.Name
+            </td>
+        </tr>
+    }
+
+</table>

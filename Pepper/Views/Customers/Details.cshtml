@@ -6,3 +6,18 @@
 
 <h2>@Model.Name</h2>
 
+<div>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(model => model.MemberShipType)</th>
+                <td>@Model.MemberShipType.Name</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(model => model.Birthday)</th>
+                <td>@Model.Birthday</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>

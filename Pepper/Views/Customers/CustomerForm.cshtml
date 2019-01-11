@@ -1,0 +1,38 @@
+﻿@model Pepper.ViewModel.CustomerFormViewModel
+
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var formName = (Model.Customer == null) ? "New Customer" : "Edit Customer";
+    <h2>@formName</h2>
+}
+
+
+
+@using (Html.BeginForm("Save", "Customers"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.Name)
+        @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.Birthday)
+        @Html.TextBoxFor(m => m.Customer.Birthday, "{0:d MMM yyyy}", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.MemberShipTypeId)
+        @Html.DropDownListFor(m => m.Customer.MemberShipTypeId, new SelectList(Model.MemberShipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+
+        @Html.CheckBoxFor(m => m.Customer.IsSubscribeToNewsltter, new { @class = "checkbox" })
+        @Html.LabelFor(m => m.Customer.IsSubscribeToNewsltter)
+    </div>
+    @Html.HiddenFor(m => m.Customer.Id);
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
