@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
-using Pepper.ViewModel;
+using System.Data.Entity.Validation;
 
 namespace Pepper.Controllers
 {
@@ -85,10 +85,14 @@ namespace Pepper.Controllers
         {
             var viewModel = new MovieFormViewModel
             {
+                Movie = new Movie(),
                 Genres = _context.Genres.ToList()
             };
             return View("MovieForm", viewModel);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
             if (movie.Id == 0)
@@ -104,7 +108,9 @@ namespace Pepper.Controllers
                 movieFromDb.NumberInStock = movie.NumberInStock;
             }
 
-            _context.SaveChanges();
+                _context.SaveChanges();
+
+
             return RedirectToAction("Index", "Movies");
         }
            

@@ -24,8 +24,9 @@ namespace Pepper.Models
         [DisplayName("Membership Type")]
         public byte MemberShipTypeId { get; set; }
 
-        [DisplayFormat(DataFormatString = "{MM/dd")]
+        
         [DisplayName("Date of Birth")]
+        [Min18YearsIfaMember]
         public DateTime? Birthday { get; set; }
     }
 }

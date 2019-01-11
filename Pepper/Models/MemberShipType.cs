@@ -14,5 +14,10 @@ namespace Pepper.Models
 
         public string Name { get; set; }
 
+        public static readonly byte UNKNOWN = 0;
+
+        public static readonly byte PAY_AS_YOU_GO = 1;
+
+
     }
 }
