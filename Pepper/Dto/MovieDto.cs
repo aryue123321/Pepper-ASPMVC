@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pepper.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Pepper.Dto
         public string Name { get; set; }
 
         [Required]
-        public byte GenreId { get; set; }
+        public Genre Genre { get; set; }
 
         [Range(1, 20)]
         public int NumberInStock { get; set; }

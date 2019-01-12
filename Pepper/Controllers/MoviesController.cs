@@ -50,8 +50,10 @@ namespace Pepper.Controllers
         {
             var movies = _context.Movies.Include(m => m.Genre).ToList();
 
-            return View(movies);
+            if (User.IsInRole(RoleName.CanManageMovie))
+                return View("List", movies);
 
+            return View("ReadOnlyList", movies);
         }
 
         public ActionResult Details(int id)
@@ -68,6 +70,7 @@ namespace Pepper.Controllers
         }
 
 
+        [Authorize(Roles = RoleName.CanManageMovie)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
@@ -81,6 +84,8 @@ namespace Pepper.Controllers
             
             return View("MovieForm", viewModel);
         }
+
+        [Authorize(Roles = RoleName.CanManageMovie)]
         public ActionResult New()
         {
             var viewModel = new MovieFormViewModel

@@ -1,12 +1,11 @@
-﻿using Pepper.Models;
+﻿
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+
 
 namespace Pepper.Dto
 {
+    
     public class CustomerDto
     {
 
@@ -18,7 +17,9 @@ namespace Pepper.Dto
 
         public bool IsSubscribeToNewsltter { get; set; }
 
-        public byte MemberShipTypeId { get; set; }
+        //public byte MemberShipTypeId { get; set; }
+
+        public MemberShipTypeDto MemberShipType { get; set; }
 
         //[Min18YearsIfaMember]
         public DateTime? Birthday { get; set; }
